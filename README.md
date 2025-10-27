@@ -1,108 +1,89 @@
+
 # Pneumonia Detection from Chest X-Ray Images
-Deep Learning Final Project — Bar-Ilan University, 2024  
+Deep Learning Final Project — Bar-Ilan University (2024)  
 **Author:** Yuval Ronen
 
----
-
 ## 🩻 Project Overview
-This project focuses on classifying chest X-ray images into **NORMAL** and **PNEUMONIA** categories using Convolutional Neural Networks (CNNs) and Transfer Learning techniques.  
-The goal was to develop effective and efficient models capable of supporting diagnostic decision-making in medical imaging.
-
----
+This project focuses on classifying chest X-ray images into **NORMAL** and **PNEUMONIA** categories using Convolutional Neural Networks (CNNs) and **Transfer Learning**.  
+The goal was to build effective diagnostic support models for medical imaging analysis.
 
 ## 🎯 Key Features
-- **Custom CNN Architecture:** Built and trained baseline convolutional models to establish initial performance.
-- **Transfer Learning:** Fine-tuned pre-trained models including **VGG**, **ResNet152V2**, and **EfficientNetB0** for improved classification accuracy.
-- **Model Iteration & Optimization:** Applied data augmentation, regularization, and batch normalization to reduce overfitting and improve generalization.
-- **Performance Evaluation:** Systematically compared models to identify the best-performing architecture.
+- **Custom CNN model** built as a baseline
+- **Transfer Learning** using:
+  - VGG
+  - ResNet152V2
+  - **EfficientNetB0 (Best Performing Model)**
+- **Model optimization techniques** including:
+  - Data augmentation
+  - Dropout
+  - L1/L2 weight regularization
+  - Batch normalization
+  - Learning rate scheduling + Early stopping
+- **Direct evaluation without training** — run and test immediately
 
----
+## 🧠 Methodology & Approach
 
-## 🧠 Approach
+### 1) Baseline CNN (Built From Scratch)
+A custom CNN was implemented to:
+- Understand the feature space
+- Establish baseline accuracy
+- Reveal overfitting trends and limits
 
-### 1) Baseline Model — Custom CNN
-I began by developing a CNN from scratch to:
-- Understand the feature representation needed
-- Establish baseline performance
-- Identify challenges such as overfitting
+### 2) Transfer Learning Experiments
+We fine-tuned pre-trained ImageNet models:
 
-The custom CNN served as a **controlled starting point** for experimentation.
+| Model | Notes | Result |
+|------|------|--------|
+| VGG | Moderate fine-tuning | Improved, but unstable |
+| ResNet152V2 | Trained last layers | Better feature extraction |
+| **EfficientNetB0** | **Best performance** | ✅ Selected as final model |
 
-### 2) Transfer Learning Models
-I then leveraged **pre-trained ImageNet models**, including:
-- VGG
-- ResNet152V2
-- EfficientNetB0
-
-These models were **fine-tuned** on the X-ray dataset.  
-**EfficientNetB0 achieved the highest classification performance.**
-
-### 3) Model Optimization Strategy
-To improve generalization, I experimented with:
-- Data augmentation (rotation, scaling, shifts)
-- Dropout layers
-- L1 / L2 Weight Regularization
-- Batch Normalization
-- Learning-rate adjustments and early stopping
-
-This iterative process guided us to a **stable and high-performing final model**.
-
----
+### 3) Model Improvement Strategy
+To improve classification accuracy:
+- Applied **data augmentation** (rotations, flips, shifts)
+- Added **dropout + L1/L2 regularization** to reduce overfitting
+- Used **batch normalization** to stabilize gradients
+- Tuned **learning rate + used EarlyStopping**
 
 ## 📊 Results Summary
 
-| Model | Approach | Performance Summary |
-|-------|---------|---------------------|
-| Custom CNN | Baseline from scratch | Learned basic features but limited accuracy |
-| VGG (Transfer Learning) | Moderate fine-tuning | Improved accuracy but prone to overfitting |
-| ResNet152V2 (Fine-Tuned) | Trained last layers | Better representation learning |
-| **EfficientNetB0 (Fine-Tuned)** | **Final model** | **Best performance and generalization** ✅ |
-
----
+| Model | Approach | Performance |
+|------|---------|-------------|
+| Custom CNN | Built from scratch | Learned basic structure, limited accuracy |
+| VGG (Transfer Learning) | Partially fine-tuned | Better but inconsistent |
+| ResNet152V2 | Fine-tuned last layers | Stronger representation |
+| **EfficientNetB0** | **Fully fine-tuned** | **Best generalization & accuracy** ✅ |
 
 ## 📂 Repository Structure
-```bash
+```
 chest-xray-pneumonia-classification/
 ├── README.md
-├── notebook/
-│   └── chest-xray-pneumonia-classification.ipynb
-└── images/       # (optional: example images)
+└── notebook/
+    └── chest_xray_project.ipynb
+```
 
----
+## 🚀 How to Run (No Training Needed)
 
----
-
-## 🚀 How to Run
-The notebook is already structured so that you can test the model **without re-training it**.
-
-### 1) Open the Notebook in Google Colab
-Open the project notebook here:  
+### ✅ Open the Notebook in Google Colab
+Run the project here:  
 https://colab.research.google.com/drive/1knkCV9MSnOlM0vU_9MSnES5mU3PtzSo5#scrollTo=2EBngprD0rip
 
+### ✅ Run **Evaluation** Section Only
+This section:
+- Loads the preconfigured models included in the notebook
+- Runs prediction on the test dataset
+- Displays accuracy, confusion matrix, and example outputs
 
-### 2) Run the **Evaluation** Section Only
-The **Evaluation** section:
-- Loads the trained models directly from the notebook
-- Runs predictions on test images
-- Shows accuracy and sample outputs
+**No training time is required.**
+You get results immediately.
 
-✅ This allows you to test the model **immediately**, with **no training time**.
-
----
-
-### 🧠 (Optional) Re-Training
-If you want to retrain the model from scratch, run the section labeled **Training**.
-
-> **Note:** Training takes **20–40 minutes** depending on GPU settings.  
-For typical use and demonstration, **running Evaluation only is recommended.**
-
----
+### 🧠 (Optional) Retraining
+If desired, run the **Training** section in the notebook.  
+Training time: *~20–40 minutes depending on GPU.*
 
 ## 📎 Dataset
-The dataset used in this project:  
+Dataset used:  
 https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia
 
----
-
 ## 🙌 Acknowledgements
-This project was completed as the final assignment for the **Deep Learning course at Bar-Ilan University (2024).**
+Project completed as part of the **Deep Learning Course** at **Bar-Ilan University (2024)**.
