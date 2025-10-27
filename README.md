@@ -5,80 +5,59 @@ Deep Learning Final Project — Bar-Ilan University, 2024
 ---
 
 ## 🩻 Project Overview
-This project focuses on classifying chest X-ray images into **NORMAL** and **PNEUMONIA** categories, and detecting pneumonia cases using **CNNs**, **transfer learning**, and **autoencoder-based anomaly detection**.
-
-Our goal was to improve diagnostic support in medical imaging using deep learning techniques.
+This project focuses on classifying chest X-ray images into **NORMAL** and **PNEUMONIA** categories using Convolutional Neural Networks (CNNs) and Transfer Learning techniques.  
+Our goal was to develop effective and efficient models capable of supporting diagnostic decision-making in medical imaging.
 
 ---
 
 ## 🎯 Key Features
-- **Transfer Learning:** EfficientNetB0 & ResNet152V2 fine-tuned for medical image classification
-- **Autoencoder for Anomaly Detection:** Achieved **~90.5% success rate**
-- **Explainability:** Heatmap-by-Occlusion visualization to show what the model focuses on
-- **GPU Training:** Implemented and trained on Google Colab (Tesla T4)
+- **Custom CNN Architecture:** Built and trained baseline convolutional models to establish initial performance.
+- **Transfer Learning:** Fine-tuned pre-trained models including **VGG**, **ResNet152V2**, and **EfficientNetB0** for improved classification accuracy.
+- **Model Iteration & Optimization:** Applied data augmentation, regularization, and batch normalization to reduce overfitting and improve generalization.
+- **Performance Evaluation:** Systematically compared models to identify the best-performing architecture.
 
 ---
 
-## 📂 Repository Structure
-```
-chest-xray-pneumonia-classification/
-├── README.md
-├── notebook/
-│   └── chest_xray_project.ipynb
-├── models/               # optional
-└── images/               # example X-ray images + heatmaps
-```
+## 🧠 Approach
 
----
+### 1) Baseline Model — Custom CNN
+We began by developing a CNN from scratch to:
+- Understand the feature representation needed
+- Establish baseline performance
+- Identify challenges such as overfitting
 
-## 🧠 Models Used
-| Model | Purpose | Notes |
-|------|---------|------|
-| EfficientNetB0 | Transfer Learning Classifier | Best classification performance |
-| ResNet152V2 | Transfer Learning Classifier | Fine-tuned last 35 layers |
-| Autoencoder (CNN-based) | Anomaly Detection | ~90.5% detection accuracy |
+The custom CNN served as a **controlled starting point** for experimentation.
 
----
+### 2) Transfer Learning Models
+We then leveraged **pre-trained ImageNet models**, including:
+- VGG
+- ResNet152V2
+- EfficientNetB0
 
-## 🔥 Explainability (Heatmap by Occlusions)
-To highlight which lung regions influence the model's decisions, we generate heatmaps by sliding blackout windows over the image.
+These models were **fine-tuned** on the X-ray dataset.  
+**EfficientNetB0 achieved the highest classification performance.**
 
-```
-(images/heatmap_example_1.png)
-(images/heatmap_example_2.png)
-```
+### 3) Model Optimization Strategy
+To improve generalization, we experimented with:
+- Data augmentation (rotation, scaling, shifts)
+- Dropout layers
+- L1 / L2 Weight Regularization
+- Batch Normalization
+- Learning-rate adjustments and early stopping
 
----
-
-## 🚀 How to Run
-### 1) Open the Notebook in Google Colab
-```
-notebook/chest_xray_project.ipynb
-```
-
-### 2) Enable GPU
-```
-Runtime → Change runtime type → GPU
-```
-
-### 3) Install dependencies
-```
-pip install tensorflow keras numpy matplotlib opencv-python
-```
-
-### 4) Run training or inference directly in the notebook.
+This iterative process guided us to a **stable and high-performing final model**.
 
 ---
 
 ## 📊 Results Summary
-| Task | Accuracy | Method |
-|------|---------|--------|
-| Classification | ~94% | EfficientNet Transfer Learning |
-| Anomaly Detection | ~90.5% | Autoencoder + MSE Thresholding |
+
+| Model | Approach | Performance Summary |
+|-------|---------|---------------------|
+| Custom CNN | Baseline from scratch | Learned basic features but limited accuracy |
+| VGG (Transfer Learning) | Moderate fine-tuning | Improved accuracy but prone to overfitting |
+| ResNet152V2 (Fine-Tuned) | Trained last layers | Better representation learning |
+| **EfficientNetB0 (Fine-Tuned)** | **Final model** | **Best performance and generalization** ✅ |
 
 ---
 
-## 📎 Links
-- Dataset: https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia
-- Course: Deep Learning @ Bar-Ilan University
-
+## 📂 Repository Structure
