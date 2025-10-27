@@ -1,6 +1,6 @@
 # Pneumonia Detection from Chest X-Ray Images
 Deep Learning Final Project — Bar-Ilan University, 2024  
-**Authors:** Yuval Ronen & Mohammed Gara
+**Author:** Yuval Ronen
 
 ---
 
